@@ -420,8 +420,8 @@ class PedersencommitmentbulletproofsEnrichmentSuite:
         self.zkproofaggregationfo = ZkProofAggregationForBatchVerificationEngine()
         self.formalsecurityproofd = FormalSecurityProofDocumentationZeroknowledgeSoundnessEngine()
         self.nistcompliancecertif = NistComplianceCertificationChecklistWithTestVectorValidationEngine()
-        self.additionalenhancemen = AdditionalEnhancementConfidentialTransactionSimulatorEngine()
-        self.additionalenhancemen = AdditionalEnhancementInnerProductArgumentOptimizerEngine()
+        self.confidentialtxsim = AdditionalEnhancementConfidentialTransactionSimulatorEngine()
+        self.innerproductopt = AdditionalEnhancementInnerProductArgumentOptimizerEngine()
 
     def execute_all(self, primary_val: float = 1.5, secondary_val: float = 0.5) -> Dict[str, Any]:
         results = {}
@@ -431,8 +431,8 @@ class PedersencommitmentbulletproofsEnrichmentSuite:
         results["ZkProofAggregationForBatchVerificationEngine"] = self.zkproofaggregationfo.evaluate(primary_val, secondary_val)
         results["FormalSecurityProofDocumentationZeroknowledgeSoundnessEngine"] = self.formalsecurityproofd.evaluate(primary_val, secondary_val)
         results["NistComplianceCertificationChecklistWithTestVectorValidationEngine"] = self.nistcompliancecertif.evaluate(primary_val, secondary_val)
-        results["AdditionalEnhancementConfidentialTransactionSimulatorEngine"] = self.additionalenhancemen.evaluate(primary_val, secondary_val)
-        results["AdditionalEnhancementInnerProductArgumentOptimizerEngine"] = self.additionalenhancemen.evaluate(primary_val, secondary_val)
+        results["AdditionalEnhancementConfidentialTransactionSimulatorEngine"] = self.confidentialtxsim.evaluate(primary_val, secondary_val)
+        results["AdditionalEnhancementInnerProductArgumentOptimizerEngine"] = self.innerproductopt.evaluate(primary_val, secondary_val)
         return results
 
 # Global instance
