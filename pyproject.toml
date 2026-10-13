@@ -24,11 +24,14 @@ api = ["fastapi>=0.111,<1", "uvicorn>=0.30,<1"]
 test = ["pytest>=8,<10"]
 
 [project.scripts]
-pedersen-commitment-bulletproofs = "bulletproofs_engine.cli:main"
+pedersen-commitment-bulletproofs = "cli:main"
 
 [project.urls]
 Homepage = "https://github.com/abusuraihsakhri/pedersen-commitment-bulletproofs"
 Repository = "https://github.com/abusuraihsakhri/pedersen-commitment-bulletproofs.git"
+
+[tool.setuptools]
+py-modules = ["cli", "enrichment", "simulator"]
 
 [tool.setuptools.packages.find]
 include = ["agents*", "bulletproofs_engine*"]
