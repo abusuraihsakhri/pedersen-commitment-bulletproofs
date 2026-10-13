@@ -4,7 +4,8 @@ const anomalyTerms = ['DISCORDANT', 'ANOMALY', 'MUTANT', 'VIOLATION', 'FAIL', 'R
 export function evaluatePayload(payload) {
   const primary = Number(payload.primary_metric);
   const secondary = Number(payload.secondary_metric);
-  if (!Number.isFinite(primary) || !Number.isFinite(secondary)) {
+  if (String(payload.primary_metric).trim() === '' || String(payload.secondary_metric).trim() === '' ||
+      !Number.isFinite(primary) || !Number.isFinite(secondary)) {
     throw new Error('Enter finite numeric values for both metrics.');
   }
   for (const field of ['task_id', 'target_identifier', 'status_descriptor']) {
