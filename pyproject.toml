@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pedersen-commitment-bulletproofs"
-version = "2.0.0"
+version = "3.0.1"
 description = "Bulletproofs Non-Interactive Zero-Knowledge Range Proof & Confidential Asset Engine"
 readme = "README.md"
 authors = [{ name = "Dr. Abu Suraih Sakhri", email = "abusuraih@example.com" }]
