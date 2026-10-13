@@ -4,4 +4,4 @@ Domain: Rule-Based Monitoring Demonstration
 Standard: Illustrative thresholds; not a cryptographic standard
 
 """
-__version__ = "3.0.0-ENTERPRISE"
+__version__ = "3.0.1"
