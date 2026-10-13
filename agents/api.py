@@ -31,7 +31,8 @@ def metrics():
     return {
         "dossiers_processed_total": len(supervisor.dossier_registry),
         "audit_blocks_total": len(AuditLogger.get_trail()),
-        "system_status": "NOMINAL_OPTIMAL"
+        "system_status": (next(reversed(supervisor.dossier_registry.values())).overall_urgency.value
+                          if supervisor.dossier_registry else "NOT_EVALUATED")
     }
 
 
