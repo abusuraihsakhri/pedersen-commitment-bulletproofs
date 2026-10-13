@@ -29,7 +29,8 @@ jobs:
     - name: Validate package installation and Python syntax
       run: |
         python -m pip check
-        python -m compileall -q agents bulletproofs_engine
+        python -m compileall -q agents bulletproofs_engine cli.py enrichment.py simulator.py
+        pedersen-commitment-bulletproofs --help
 
     - name: Browser module checks
       run: |
