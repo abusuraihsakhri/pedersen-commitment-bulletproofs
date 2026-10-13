@@ -29,3 +29,6 @@ pedersen-commitment-bulletproofs = "bulletproofs_engine.cli:main"
 [project.urls]
 Homepage = "https://github.com/abusuraihsakhri/pedersen-commitment-bulletproofs"
 Repository = "https://github.com/abusuraihsakhri/pedersen-commitment-bulletproofs.git"
+
+[tool.setuptools.packages.find]
+include = ["agents*", "bulletproofs_engine*"]
