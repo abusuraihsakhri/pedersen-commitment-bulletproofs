@@ -6,7 +6,13 @@ A Python rule-based monitoring demonstration with a standalone browser interface
 
 ## Browser demonstration
 
-Open `web/index.html` directly in a current browser. The page evaluates the same three demonstration rules as the primary Python supervisor without a backend, external fonts, accounts, or data transmission. The JSON result can be downloaded locally. GitHub Actions includes a Pages deployment workflow, subject to repository Pages configuration; use a live URL only after deployment has been verified.
+Serve the static directory locally (ES modules require an HTTP origin in common browsers):
+
+```bash
+python -m http.server 8080 --directory web
+```
+
+Open `http://127.0.0.1:8080/`. The page evaluates the same three demonstration rules as the primary Python supervisor without a backend service, external fonts, accounts, or form-data transmission. The JSON result can be downloaded locally. GitHub Actions includes a Pages deployment workflow, subject to repository Pages configuration; use a live URL only after deployment has been verified.
 
 Rules: primary metric **>25**, secondary metric **>12**, and case-insensitive descriptor keywords (`DISCORDANT`, `ANOMALY`, `MUTANT`, `VIOLATION`, `FAIL`, `REJECT`). An explicit critical flag escalates the result. These are arbitrary example thresholds. The alternate legacy `bulletproofs_engine` module has a separate secondary threshold of **>10**.
 
