@@ -1,7 +1,7 @@
 """
-Data Models & Telemetry Definitions for Bulletproofs Non-Interactive Zero-Knowledge Range Proof & Confidential Asset Agent.
-Domain: Post-Quantum Cryptography & Zero-Knowledge
-Standard: Bulletproofs NIZK Specification
+Data models for legacy rule-based monitoring.
+Domain: Rule-Based Monitoring Demonstration
+Standard: Illustrative monitoring thresholds (not a ZK proof)
 """
 import datetime
 from dataclasses import dataclass, field
@@ -35,7 +35,7 @@ class AgentTelemetryAlert:
     summary: str
     technical_details: str
     actionable_remediation: str
-    standard_reference: str = "Bulletproofs NIZK Specification"
+    standard_reference: str = "Illustrative monitoring thresholds (not a ZK proof)"
     timestamp: str = field(default_factory=lambda: datetime.datetime.now(datetime.timezone.utc).isoformat())
 
     def to_dict(self) -> Dict[str, Any]:

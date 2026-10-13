@@ -1,6 +1,6 @@
 """
 Enrichment Feature Implementation for pedersen-commitment-bulletproofs.
-Generated based on domain-specific requirements in specifications.
+The eight classes below are generic illustrative threshold checks, not cryptographic implementations.
 """
 from dataclasses import dataclass, field
 from typing import Dict, Any, List, Optional, Tuple

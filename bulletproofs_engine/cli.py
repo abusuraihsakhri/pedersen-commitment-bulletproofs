@@ -1,5 +1,5 @@
 """
-Command-Line Interface for Bulletproofs Non-Interactive Zero-Knowledge Range Proof & Confidential Asset Agent.
+Command-Line Interface for Legacy Rule-Based Monitoring Demonstration.
 """
 import argparse
 import csv
@@ -12,7 +12,7 @@ coordinator = BulletproofsCoordinator()
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(prog="pedersen-commitment-bulletproofs", description="Bulletproofs Non-Interactive Zero-Knowledge Range Proof & Confidential Asset Agent")
+    parser = argparse.ArgumentParser(prog="pedersen-commitment-bulletproofs", description="Legacy Rule-Based Monitoring Demonstration")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     # Audit
@@ -51,8 +51,8 @@ def main(argv=None):
         )
         dossier = coordinator.process(payload)
         print("=" * 80)
-        print(f"  BULLETPROOFS NON-INTERACTIVE ZERO-KNOWLEDGE RANGE PROOF & CONFIDENTIAL ASSET AGENT")
-        print(f"  Domain: Post-Quantum Cryptography & Zero-Knowledge | Standard: Bulletproofs NIZK Specification")
+        print(f"  LEGACY RULE-BASED MONITORING DEMONSTRATION")
+        print(f"  Domain: Rule-Based Monitoring Demonstration | Standard: Illustrative monitoring thresholds (not a ZK proof)")
         print(f"  Task: {dossier['task_id']} | Status: [{dossier['overall_status']}] | Total Alerts: {dossier['total_alerts']}")
         print("=" * 80)
         for a in dossier["alerts"]:
@@ -119,7 +119,7 @@ def main(argv=None):
             from .server import create_app
             app = create_app()
             if app:
-                print(f"Starting Bulletproofs Non-Interactive Zero-Knowledge Range Proof & Confidential Asset Agent on http://{args.host}:{args.port}")
+                print(f"Starting Legacy Rule-Based Monitoring Demonstration on http://{args.host}:{args.port}")
                 uvicorn.run(app, host=args.host, port=args.port)
         except ImportError:
             print("FastAPI / uvicorn not installed. Run 'pip install fastapi uvicorn'")
