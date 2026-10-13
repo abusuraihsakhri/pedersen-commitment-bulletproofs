@@ -15,8 +15,8 @@ def create_app():
 
         app = FastAPI(
             title="Bulletproofs Non-Interactive Zero-Knowledge Range Proof & Confidential Asset Agent",
-            description="Generates and verifies logarithmic-sized zero-knowledge range proofs ([0, 2^64-1]) over Pedersen commitments using inner product arguments without trusted setup.",
-            version="2.0.0-FRONTIER",
+            description="Evaluates illustrative numeric thresholds; does not implement cryptographic commitments or Bulletproofs.",
+            version="2.0.1",
         )
 
         class TaskRequest(BaseModel):
@@ -33,7 +33,7 @@ def create_app():
 
         @app.get("/health")
         def health():
-            return {"status": "HEALTHY", "system": "pedersen-commitment-bulletproofs", "domain": "Post-Quantum Cryptography & Zero-Knowledge", "version": "2.0.0-FRONTIER"}
+            return {"status": "HEALTHY", "system": "pedersen-commitment-bulletproofs", "domain": "Rule-Based Monitoring Demonstration", "version": "2.0.0-FRONTIER"}
 
         @app.post("/api/audit")
         def api_audit(req: TaskRequest):

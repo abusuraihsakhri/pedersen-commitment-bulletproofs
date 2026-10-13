@@ -1,6 +1,6 @@
 """
 Distributed Component Coordination & Executive Hierarchy for Bulletproofs Non-Interactive Zero-Knowledge Range Proof & Confidential Asset Agent.
-Domain: Post-Quantum Cryptography & Zero-Knowledge
+Domain: Rule-Based Monitoring Demonstration
 """
 import uuid
 from typing import Dict, Any, List, Optional
@@ -60,7 +60,7 @@ class RangeConstraintAuditorAgent:
 
 
 class BulletproofsCoordinator:
-    """Executive Coordinator & Air-Gapped Supervisory Intelligence."""
+    """Legacy rule-based monitoring coordinator."""
     def __init__(self):
         self.sub_1 = PedersenBlindingAgent()
         self.sub_2 = InnerProductArgumentAgent()
@@ -85,7 +85,7 @@ class BulletproofsCoordinator:
 
         dossier = {
             "system": "pedersen-commitment-bulletproofs",
-            "domain": "Post-Quantum Cryptography & Zero-Knowledge",
+            "domain": "Rule-Based Monitoring Demonstration",
             "task_id": payload.task_id,
             "target_identifier": payload.target_identifier,
             "overall_status": status.value,
@@ -93,7 +93,7 @@ class BulletproofsCoordinator:
             "critical_count": crit_count,
             "warning_count": warn_count,
             "alerts": [a.to_dict() for a in all_alerts],
-            "standard_specification": "Bulletproofs NIZK Specification",
+            "standard_specification": "Illustrative monitoring thresholds (not a ZK proof)",
             "consensus_summary": f"Consensus evaluation completed across 3 sub-agents with status [{status.value}].",
         }
 
@@ -105,6 +105,6 @@ class BulletproofsCoordinator:
         if "status" in q or "ledger" in q:
             return f"Bulletproofs Non-Interactive Zero-Knowledge Range Proof & Confidential Asset Agent currently managing {len(self.execution_ledger)} execution tasks in air-gapped memory."
         elif "standard" in q or "spec" in q:
-            return "Active runtime operating strictly according to Bulletproofs NIZK Specification specifications."
+            return "This legacy evaluator uses illustrative monitoring specifications, not zero-knowledge proofs."
         else:
-            return f"Bulletproofs Non-Interactive Zero-Knowledge Range Proof & Confidential Asset Agent executive coordinator online. Zero-telemetry on-premises surveillance active."
+            return f"Legacy monitoring evaluator ready; no cryptographic proofs were generated."

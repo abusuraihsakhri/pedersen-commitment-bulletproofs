@@ -1,191 +1,77 @@
 # Pedersen Commitment Bulletproofs
 
-> **Domain:** Post-Quantum Cryptography & Zero-Knowledge Architecture  
-> **Reference Guidelines & Standards:** `NIST FIPS 203/204/205, NIST SP 800-90B & ISO/IEC Standards`
+A Python rule-based monitoring demonstration with a standalone browser interface, CLI, FastAPI API, and in-memory HMAC audit trail.
 
-<div align="center">
+**Important scope limitation:** Despite the repository name, this implementation **does not generate or verify Pedersen commitments, Bulletproof range proofs, or other zero-knowledge proofs**. Its numeric thresholds are illustrative and **not derived from NIST standards or validated for security, medical, or operational decisions**. The eight `enrichment.py` modules are similarly threshold-based placeholders, not cryptographic or formal-verification implementations.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-![Python](https://img.shields.io/badge/Python-3.10%20%7C%203.11%20%7C%203.12-3776AB.svg?logo=python&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.111-009688.svg?logo=fastapi&logoColor=white)
-![Audit Trail](https://img.shields.io/badge/Audit-HMAC--SHA256_Tamper--Evident-brightgreen.svg)
-![Zero-PHI Guard](https://img.shields.io/badge/Guard-Zero--PHI_Outbound-blue.svg)
-![Docker](https://img.shields.io/badge/Docker-Ready-2496ED.svg?logo=docker&logoColor=white)
+## Browser demonstration
 
-</div>
-
----
-
-## 📖 What It Does
-
-**Pedersen Commitment Bulletproofs** is an advanced analytical and computational platform implementing Bulletproofs non-interactive zero-knowledge range proof & confidential asset agent. It provides a multi-worker evaluation engine with cryptographic audit trails and PHI (Protected Health Information) outbound guards.
-
----
-
-## ⚙️ Key Capabilities & Algorithmic Modules
-
-- **Deterministic Calculation Engine**: Strict compliance with standard reference formulations and thresholds.
-- **Risk & Urgency Classification**: Multi-tier categorization with automated operational action recommendations.
-- **Validation & Guardrails**: Rigorous input bounds checking and anomaly detection.
-- **Multi-Worker Evaluation**: Three specialized workers (InvariantQC, SafetyEscalation, ProtocolConformance) for comprehensive analysis.
-- **Enrichment Suite**: 8 domain-specific engines for performance benchmarking, side-channel analysis, interoperability testing, and more.
-
----
-
-## 💻 Installation
+Serve the static directory locally (ES modules require an HTTP origin in common browsers):
 
 ```bash
-# Clone the repository
-git clone https://github.com/abusuraihsakhri/pedersen-commitment-bulletproofs.git
-cd pedersen-commitment-bulletproofs
-
-# Install dependencies
-pip install -e .
-
-# Optional: Install FastAPI/uvicorn for REST API server
-pip install fastapi uvicorn
+python -m http.server 8080 --directory web
 ```
 
----
+Open `http://127.0.0.1:8080/`. The page evaluates the same three demonstration rules as the primary Python supervisor without a backend service, external fonts, accounts, or form-data transmission. The JSON result can be downloaded locally. GitHub Actions includes a Pages deployment workflow, subject to repository Pages configuration; use a live URL only after deployment has been verified.
 
-## 💻 CLI Quickstart & Usage
+Rules: primary metric **>25**, secondary metric **>12**, and case-insensitive descriptor keywords (`DISCORDANT`, `ANOMALY`, `MUTANT`, `VIOLATION`, `FAIL`, `REJECT`). An explicit critical flag escalates the result. These are arbitrary example thresholds. The alternate legacy `bulletproofs_engine` module has a separate secondary threshold of **>10**.
 
-### 1. Single Task Evaluation
-```bash
-python cli.py audit --task-id TASK-001 --target KEY-01 --primary 28.5 --secondary 14.2 --critical --status DISCORDANT
-```
+## Python installation
 
-### 2. System Chat Query
-```bash
-python cli.py chat "What is the system status?"
-```
-
-### 3. Batch CSV Processing
-```bash
-python cli.py batch -i sample.csv -o results.csv
-```
-
-### 4. Verify Audit Trail Integrity
-```bash
-python cli.py verify-audit
-```
-
-### 5. Launch REST API Server
-```bash
-python cli.py serve --host 127.0.0.1 --port 8000
-```
-
-### Parameter Reference
-- `--task-id`: Unique task identifier (default: TASK-2026-001)
-- `--target`: Target entity identifier (default: KEY-TARGET-01)
-- `--primary`: Primary metric value, float (default: 28.5)
-- `--secondary`: Secondary metric value, float (default: 14.2)
-- `--critical`: Flag for critical escalation (default: False)
-- `--status`: Status descriptor, e.g. NOMINAL, DISCORDANT (default: DISCORDANT)
-
-### Input Data Schema (CSV Batch)
-
-| Field | Description | Requirement |
-|:------|:------------|:------------|
-| `task_id` | Unique task identifier | Required |
-| `target_identifier` | Target entity identifier | Required |
-| `primary_metric` | Primary measurement value (float) | Required |
-| `secondary_metric` | Secondary measurement value (float) | Required |
-| `is_critical_flag` | Critical escalation flag (true/false) | Optional |
-| `status_descriptor` | Status code descriptor | Optional |
-
----
-
-## 🛡️ Security & Enterprise Architecture
-
-* **Zero-PHI Outbound Interceptor:** Active regex inspection blocking SSNs, MRNs, phone numbers, emails, DOBs, and patient identifiers.
-* **Tamper-Evident HMAC-SHA256 Audit Trail:** Chained, cryptographically signed logs for every evaluation and state transition. Integrity verification recomputes HMAC signatures to detect any field tampering.
-* **Secure Key Management:** The audit secret key is loaded from the `AUDIT_SECRET_KEY` environment variable. If not set, an ephemeral random key is generated (with a warning) — ensuring no hardcoded secrets in source code.
-* **FastAPI & Prometheus Telemetry:** Exposes OpenAPI 3.1 REST endpoints and operational Prometheus metrics (`/metrics`).
-
-### Environment Variables
-
-| Variable | Description | Default |
-|:---------|:------------|:--------|
-| `AUDIT_SECRET_KEY` | HMAC secret key for audit trail signing | Random ephemeral (not persisted) |
-| `MODEL_PROVIDER` | LLM provider selection | mock |
-
----
-
-## 🧪 Testing & Verification
-
-Run the full automated test suite:
+Requires Python 3.9+.
 
 ```bash
+python -m pip install -e ".[api,test]"
 pytest -v
 ```
 
-Run with coverage:
+CLI examples:
 
 ```bash
-pytest -v --tb=short
+pedersen-commitment-bulletproofs audit --task-id T1 --target KEY-01 --primary 28 --secondary 13 --status DISCORDANT
+pedersen-commitment-bulletproofs chat "status"
+pedersen-commitment-bulletproofs batch -i sample.csv -o results.csv
+pedersen-commitment-bulletproofs verify-audit
+pedersen-commitment-bulletproofs serve --host 127.0.0.1 --port 8000
 ```
 
-Execute high-throughput batch simulation benchmarks:
+The `python cli.py` form also works. The default installed command uses `agents/`; the legacy command can still be invoked through `python -m bulletproofs_engine.cli`.
+
+Batch CSV fields: `task_id`, `target_identifier`, `primary_metric`, `secondary_metric`, `status_descriptor`, and `is_critical_flag`. Invalid numerical records are skipped with a warning.
+
+## REST API
+
+The optional FastAPI server exposes `GET /health`, `GET /metrics`, `POST /api/audit`, `POST /api/chat`, and `GET /api/audit/logs`. API docs are at `http://127.0.0.1:8000/docs` during local development. Do not expose the server publicly without independently implementing authentication, access controls, request limits, and persistent logging.
+
+The `/api/chat` endpoint is a deterministic mock, not an actual language-model inference service. Other provider names are rejected rather than silently falling back to the mock.
+
+## Audit and privacy limitations
+
+The server computes an HMAC-SHA256 chain over audit metadata using `AUDIT_SECRET_KEY`. Provide a randomly generated secret in deployment. Without one, the application warns and uses an ephemeral key. The audit log, keys, and task registry are **in memory only**: they do not survive restarts, and `verify-audit` in a new CLI process cannot verify entries from a previous process. HMAC integrity is not proof of regulatory compliance, secure persistence, or independent attestation.
+
+Regex-based identifier screening covers common examples of emails, phone numbers, MRNs, dates of birth, and similar patterns. It is **not comprehensive de-identification**, a HIPAA Safe Harbor implementation, or a guarantee that personal data cannot enter the service. Do not submit real patient or sensitive data.
+
+For Docker Compose, set `AUDIT_SECRET_KEY` in your shell or a private `.env` file:
 
 ```bash
-python simulator.py 100
+export AUDIT_SECRET_KEY="$(python -c 'import secrets; print(secrets.token_urlsafe(48))')"
+docker compose up --build
 ```
 
----
+Do not commit this value. An audit key present in earlier repository history should be considered exposed and must not be reused.
 
-## 🐳 Container Deployment
+## Quality checks and technology
 
 ```bash
-docker build -t pedersen-commitment-bulletproofs .
-docker run -p 8000:8000 -e AUDIT_SECRET_KEY=your-secret-key pedersen-commitment-bulletproofs
+python -m pip check
+python -m compileall -q agents bulletproofs_engine cli.py enrichment.py simulator.py
+pytest -v
+node --check web/app.mjs
+node --test tests/web.test.mjs
 ```
 
-Or using Docker Compose:
+The Python code uses Pydantic, with FastAPI and Uvicorn for the optional API. The browser uses native JavaScript (no Pyodide or Python runtime); HTML, CSS, and JS are kept relative for static hosting. CI tests Python 3.10–3.12 and the browser evaluation module.
 
-```bash
-docker-compose up -d
-```
+## License
 
----
-
-## 📁 Project Structure
-
-```
-pedersen-commitment-bulletproofs/
-├── agents/                      # Core agent modules (Pydantic models, workers, API)
-│   ├── __init__.py
-│   ├── api.py                   # FastAPI REST endpoints
-│   ├── base.py                  # Security, PHI guard, HMAC audit trail
-│   ├── llm_factory.py           # LLM provider factory
-│   ├── models.py                # Pydantic data models
-│   ├── supervisor.py            # Multi-worker orchestrator
-│   └── workers.py               # Specialized evaluation workers
-├── bulletproofs_engine/         # Alternative engine implementation
-│   ├── __init__.py
-│   ├── agents.py                # Sub-agent implementations
-│   ├── cli.py                   # CLI entry point
-│   ├── engine.py                # Core domain engine
-│   ├── models.py                # Dataclass models
-│   └── server.py                # FastAPI server factory
-├── tests/                       # Test suite
-│   ├── test_bulletproofs_engine.py
-│   ├── test_enrichment.py
-│   ├── test_enrichment_fix.py
-│   ├── test_pedersen_commitment_bulletproofs.py
-│   └── test_security_and_validation.py
-├── cli.py                       # Main CLI entry point
-├── simulator.py                 # High-throughput simulation
-├── enrichment.py                # Enrichment feature suite
-├── pyproject.toml               # Project configuration
-├── Dockerfile                   # Container build
-├── docker-compose.yml           # Container orchestration
-└── web/
-    └── index.html               # Web dashboard
-```
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see [LICENSE](LICENSE) for details.
+MIT — see [LICENSE](LICENSE).

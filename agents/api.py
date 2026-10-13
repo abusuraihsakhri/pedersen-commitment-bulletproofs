@@ -12,8 +12,8 @@ supervisor = SystemSupervisor(model_provider="mock")
 
 app = FastAPI(
     title="Pedersen Commitment Bulletproofs API",
-    description="Enterprise Distributed Component Platform (Post-Quantum Cryptography & Hardware Security)",
-    version="3.0.0-ENTERPRISE",
+    description="Rule-based metric screening and in-memory HMAC audit demonstration; does not produce cryptographic range proofs.",
+    version="3.0.1",
 )
 
 
@@ -23,7 +23,7 @@ class ChatRequest(BaseModel):
 
 @app.get("/health")
 def health():
-    return {"status": "HEALTHY", "service": "pedersen-commitment-bulletproofs", "domain": "Post-Quantum Cryptography & Hardware Security", "standard": "NIST FIPS 203/204/205 / ISO/IEC 17825 Standards", "version": "3.0.0-ENTERPRISE"}
+    return {"status": "HEALTHY", "service": "pedersen-commitment-bulletproofs", "engine": "rule-based-monitoring", "version": "3.0.1"}
 
 
 @app.get("/metrics")
@@ -31,13 +31,20 @@ def metrics():
     return {
         "dossiers_processed_total": len(supervisor.dossier_registry),
         "audit_blocks_total": len(AuditLogger.get_trail()),
-        "system_status": "NOMINAL_OPTIMAL"
+        "system_status": (next(reversed(supervisor.dossier_registry.values())).overall_urgency.value
+                          if supervisor.dossier_registry else "NOT_EVALUATED")
     }
 
 
 @app.post("/api/audit")
 def api_audit(payload: SystemTaskPayload):
-    dossier = supervisor.process_task(payload)
+    try:
+        dossier = supervisor.process_task(payload)
+    except Exception as exc:
+        from .base import SecurityException
+        if isinstance(exc, SecurityException):
+            raise HTTPException(status_code=422, detail="Input contains a potentially sensitive identifier") from None
+        raise
     return dossier.to_dict()
 
 
@@ -46,8 +53,11 @@ def api_chat(req: ChatRequest):
     try:
         ans = supervisor.query_supervisory_chat(req.query)
         return {"response": ans}
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as exc:
+        from .base import SecurityException
+        if isinstance(exc, SecurityException):
+            raise HTTPException(status_code=422, detail="Query contains a potentially sensitive identifier") from None
+        raise
 
 
 @app.get("/api/audit/logs")
